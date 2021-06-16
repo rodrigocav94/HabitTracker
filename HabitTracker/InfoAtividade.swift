@@ -22,8 +22,9 @@ struct InfoAtividade: View {
     func transformarDataEmString() -> [String] {
         var arrayQueRetornará = [String]()
         let formatador = DateFormatter()
-        formatador.dateFormat = "yyyy-MM-dd"
         formatador.dateStyle = .long
+        formatador.timeStyle = .none
+        formatador.locale = Locale(identifier: "pt_BR")
         for data in atividade.datas {
             arrayQueRetornará.append(formatador.string(from: data))
         }
@@ -67,6 +68,7 @@ struct InfoAtividade: View {
                     .pickerStyle(InlinePickerStyle())
                 }
                 DatePicker("Selecione uma data", selection: $novaData, displayedComponents: .date)
+                    .environment(\.locale, .init(identifier: "pt_BR"))
                 Button(action: {
                     self.atividade.datas.append(novaData)
                     atividade.duração.append(novaHora)

@@ -36,6 +36,7 @@ struct NovaAtividade: View {
                 }
                 Section(header: Text("Quando")) {
                     DatePicker("", selection: $quando, displayedComponents: .date)
+                        .environment(\.locale, .init(identifier: "pt_BR"))
                 }
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .labelsHidden()
